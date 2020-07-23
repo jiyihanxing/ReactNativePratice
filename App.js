@@ -20,10 +20,10 @@ const App: () => React$Node = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView style={[{flex: 1, backgroundColor:'gray'}]}>
-        {/*<CSText />*/}
-        <CSHome></CSHome>
-      </SafeAreaView>
+      {/*<SafeAreaView style={[{flex: 1, backgroundColor:'gray'}]}>*/}
+      {/*  /!*<CSText />*!/*/}
+      {/*</SafeAreaView>*/}
+      <CSHome />
     </>
   );
 };
