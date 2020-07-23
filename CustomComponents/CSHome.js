@@ -15,13 +15,14 @@ function click(navigation) {
 }
 
 function HomeScreen({navigation,route}) {
-    // useEffect(()=>{
-    //
-    // })
-    // const [real1] = useState('')
-    // useEffect(()=>{
-    //     console.log('我是下级页面回传参数值：' + real1);
-    // }, real1)
+    //监测下级页面参数回传
+    useEffect(()=>{
+        if (route.params?.real1) {
+            console.log('我是下级页面回传参数值：' + route.params?.real1)
+        } else {
+            console.log('我是下级页面回传参数值：undefined')
+        }
+    })
 
     return (
         <ScrollView style={{showsVerticalScrollIndicator: false}}>
@@ -43,7 +44,7 @@ function HomeScreen({navigation,route}) {
                 //onPress={click(navigation)}//不添加"=>"介头函数会直接响应click方法一次
                 onPress={()=>click(navigation)}
             >
-                <Text style={{width: Device.width()-40, height: 30, textAlign: 'center',backgroundColor: 'orange',fontSize: 25,lineHeight: 30,textAlignVertical: 'center'}}>当前设备平台：{Device.os()}</Text>
+                <Text style={{width: Device.width()-40, height: 30, textAlign: 'center',backgroundColor: 'orange',fontSize: 25,lineHeight: 30,textAlignVertical: 'center'}}>Push</Text>
 
             </TouchableOpacity>
         </ScrollView>
