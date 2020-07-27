@@ -13,8 +13,8 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import CSText from "./CustomComponents/CSText";
 import CSHome from "./CustomComponents/CSHome";
+import CSRoot from './CustomComponents/CSRoot'
 
 const App: () => React$Node = () => {
   return (
@@ -23,7 +23,8 @@ const App: () => React$Node = () => {
       {/*<SafeAreaView style={[{flex: 1, backgroundColor:'gray'}]}>*/}
       {/*  /!*<CSText />*!/*/}
       {/*</SafeAreaView>*/}
-      <CSHome />
+      {/*<CSHome />*/}
+      <CSRoot/>
     </>
   );
 };

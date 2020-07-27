@@ -15,10 +15,10 @@ class CSTest extends React.Component {
     constructor() {
         super();
         this.state = {
-            width: Device.width(),
-            height: Device.height(),
-            scale: Device.scale(),
-            os: Device.os(),
+            width: Device.width,
+            height: Device.height,
+            scale: Device.scale,
+            os: Device.os,
             myName: 'start',
         }
     };
@@ -84,7 +84,7 @@ class CSTest extends React.Component {
                 <Text style={styles.textStyle}>myName：{this.state.myName}</Text>
                 <TouchableOpacity
                     style={{
-                        width: Device.width()-20,
+                        width: Device.width-20,
                         height: 44,
                         marginLeft: 10,
                         marginTop: 20,
@@ -96,7 +96,7 @@ class CSTest extends React.Component {
                     onPress={()=>{this._click()}}
                     //onPress={()=>{this.updateMyName('哈哈')}}
                 >
-                    <Text style={{width: Device.width()-40, height: 30, textAlign: 'center',backgroundColor: 'orange',fontSize: 25,lineHeight: 30,textAlignVertical: 'center'}}>当前设备平台：{os}</Text>
+                    <Text style={{width: Device.width-40, height: 30, textAlign: 'center',backgroundColor: 'orange',fontSize: 25,lineHeight: 30,textAlignVertical: 'center'}}>当前设备平台：{os}</Text>
 
                 </TouchableOpacity>
             </ScrollView>
@@ -111,15 +111,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',//纵向对齐方式
         alignItems: 'center',//横向对齐方式
         backgroundColor: 'green',
-        width: Device.width(),
-        height: Device.height() - 74,
+        width: Device.width,
+        height: Device.height - 74,
     },
 
     textStyle: {
         backgroundColor: 'orange',
         color: 'purple',
         fontSize: 30,
-        width: Device.width()-20,
+        width: Device.width-20,
         height: 60,
         fontWeight: 'bold',
         textAlign: 'center',

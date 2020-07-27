@@ -11,19 +11,9 @@ const DeviceScale = Dimensions.get('window').scale
 const DeviceOS = Platform.OS
 
 export default class Device extends Component {
-    static width() {
-        return DeviceWidth
-    }
-
-    static height() {
-        return DeviceHeight
-    }
-
-    static scale() {
-        return DeviceScale
-    }
-
-    static os() {
-        return DeviceOS
-    }
+    static width = DeviceWidth
+    static height = DeviceHeight
+    static scale = DeviceScale
+    static os = DeviceOS
 }
+
