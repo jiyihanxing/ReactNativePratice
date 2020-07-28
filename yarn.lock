@@ -1133,6 +1133,14 @@
   resolved "https://registry.npm.taobao.org/@react-native-community/masked-view/download/@react-native-community/masked-view-0.1.10.tgz#5dda643e19e587793bc2034dd9bf7398ad43d401"
   integrity sha1-XdpkPhnlh3k7wgNN2b9zmK1D1AE=
 
+"@react-navigation/bottom-tabs@^5.7.2":
+  version "5.7.2"
+  resolved "https://registry.npm.taobao.org/@react-navigation/bottom-tabs/download/@react-navigation/bottom-tabs-5.7.2.tgz#330c8ade026030830fce7806ce53cbae97a36e28"
+  integrity sha1-MwyK3gJgMIMPzngGzlPLrpejbig=
+  dependencies:
+    color "^3.1.2"
+    react-native-iphone-x-helper "^1.2.1"
+
 "@react-navigation/core@^3.7.6":
   version "3.7.6"
   resolved "https://registry.npm.taobao.org/@react-navigation/core/download/@react-navigation/core-3.7.6.tgz?cache=0&sync_timestamp=1595170518653&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40react-navigation%2Fcore%2Fdownload%2F%40react-navigation%2Fcore-3.7.6.tgz#e0244fcdc22937825b252197f70308bbe5709c58"

@@ -1,9 +1,9 @@
-import React, {Component, useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import {
     Text,
     StyleSheet,
     ScrollView,
-    TouchableOpacity, Button
+    TouchableOpacity
 } from 'react-native'
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
@@ -13,17 +13,26 @@ import {DetailsScreen} from "./CSDetails"
 //创建导航控制器
 const Stack = createStackNavigator()
 
-function App() {
+// function App() {
+//     return (
+//         <NavigationContainer>
+//             <Stack.Navigator>
+//                 <Stack.Screen name='Home' component={HomeScreen}/>
+//                 <Stack.Screen name='Details' component={DetailsScreen}/>
+//             </Stack.Navigator>
+//         </NavigationContainer>
+//     )
+// }
+// export default App
+
+export function HomeScreens() {
     return (
-        <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen name='Home' component={HomeScreen}/>
-                <Stack.Screen name='Details' component={DetailsScreen}/>
-            </Stack.Navigator>
-        </NavigationContainer>
+        <Stack.Navigator>
+            <Stack.Screen name='Home' component={HomeScreen}/>
+            <Stack.Screen name='Details' component={DetailsScreen}/>
+        </Stack.Navigator>
     )
 }
-export default App
 
 export function HomeScreen ({navigation,route}) {
     //监测下级页面参数回传
@@ -43,9 +52,9 @@ export function HomeScreen ({navigation,route}) {
 
     return (
         <ScrollView style={{showsVerticalScrollIndicator: false}}>
-            <Text style={styles.textStyle}>当前设备宽度：{Device.width}</Text>
-            <Text style={styles.textStyle}>当前设备高度：{Device.height}</Text>
-            <Text style={styles.textStyle}>当前设备分辨率：{Device.scale}</Text>
+            <Text style={styles.textStyle}>当前设备宽度：{Device.width}px</Text>
+            <Text style={styles.textStyle}>当前设备高度：{Device.height}px</Text>
+            <Text style={styles.textStyle}>当前设备分辨率：{Device.scale}倍</Text>
             <Text style={styles.textStyle}>当前系统：{Device.os}</Text>
             <TouchableOpacity
                 style={{

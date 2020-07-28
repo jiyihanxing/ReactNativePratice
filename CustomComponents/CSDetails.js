@@ -8,9 +8,45 @@ import {
 import Device from './Device'
 
 export function DetailsScreen({navigation,route}) {
+    navigation.setOptions({
+        title: '详情',
+        headerStyle:{
+            backgroundColor: '#52cc8f',//设置导航条背景色
+        },
+        headerTintColor: '#fff',//统一设置标题和返回按钮颜色
+        //设置title样式
+        headerTitleStyle:{
+            color: 'red',//设置标题颜色
+            fontSize: 30,
+            fontWeight: 'bold'
+        },
+        //设置返回按钮标题
+        headerBackTitle: ' ',
+        headerTruncatedBackTitle: '8888',
+        headerBackTitleStyle: {
+            color:'blue'
+        },
+        //设置左边按钮
+        // headerLeft: ()=> (
+        //     <Button
+        //         onPress={() => navigation.goBack()}
+        //         title= '< 返回'
+        //         color="#fff"
+        //     />
+        // ),
+        //设置右边按钮
+        headerRight: ()=> (
+            <Button
+                onPress={() => alert('设置')}
+                title= '设置'
+                color="#fff"
+            />
+        )
+    })
+
     return (
         <ScrollView style={{showsVerticalScrollIndicator: false}}>
-            <Button title={'更改标题'} style={{titleTextColor:'red',fontWeight: 'bold'}} onPress={()=>updateTitle(navigation)}/>
+            <Button title={'更改标题'} style={{color:'red',fontWeight: 'bold',fontSize: 30}} onPress={()=>updateTitle(navigation)}/>
             <TouchableOpacity
                 activeOpacity={0.5}
                 onPress={()=>back(navigation,route.params)}
