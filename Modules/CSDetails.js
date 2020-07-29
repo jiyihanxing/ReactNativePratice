@@ -5,7 +5,7 @@ import {
     ScrollView,
     TouchableOpacity, Button
 } from 'react-native'
-import Device from './Device'
+import Device from '../Common/Device'
 
 export function DetailsScreen({navigation,route}) {
     //配置导航条

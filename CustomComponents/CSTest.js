@@ -8,8 +8,8 @@ import {
     Alert
 } from 'react-native'
 
-import Device from './Device'
-import {sendGetRequest,sendPostRequest} from './CSFetch'
+import Device from '../Common/Device'
+import {sendGetRequest,sendPostRequest} from '../Common/CSFetch'
 
 class CSTest extends React.Component {
     constructor() {

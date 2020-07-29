@@ -6,9 +6,9 @@ import {
     TouchableOpacity
 } from 'react-native'
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
-import Device from './Device'
+import Device from '../Common/Device'
 import {FoodListScreen} from "./CSFoodList";
-import {IconWithBadge} from "./CSIconBadge";
+import {IconWithBadge} from "../CustomComponents/CSIconBadge";
 //tab导航
 const Tab = createBottomTabNavigator()
 

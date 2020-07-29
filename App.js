@@ -13,8 +13,8 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import CSHome from "./CustomComponents/CSHome";
-import CSRoot from './CustomComponents/CSRoot'
+import CSHome from "./Modules/CSHome";
+import CSRoot from './Modules/CSRoot'
 
 const App: () => React$Node = () => {
   return (
