@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react'
+import React from 'react'
 import {
     Text,
     StyleSheet,
@@ -8,6 +8,7 @@ import {
 import Device from './Device'
 
 export function DetailsScreen({navigation,route}) {
+    //配置导航条
     navigation.setOptions({
         title: '详情',
         headerStyle:{
@@ -65,7 +66,7 @@ function updateTitle(navigation) {
     })
 }
 
-//返回
+//pop返回/返回指定页面并回传参数
 function back(navigation,params) {
     //输出上个页面传参
     console.log(JSON.stringify(params.real))
@@ -74,9 +75,9 @@ function back(navigation,params) {
         params.real = '必须的！！！'
     )
     console.log(JSON.stringify(params.real))
-    //返回上级页面
+    //pop返回上级页面
     //this.props.navigation.goBack()
-    //返回指定页面
+    //返回指定页面并回传参数
     navigation.navigate('Home',{
         real1: 'Common on baby!!!',
         name: '寄意寒星666'

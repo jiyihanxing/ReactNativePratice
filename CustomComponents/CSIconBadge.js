@@ -1,6 +1,5 @@
+import React from "react";
 import {Image, View, Text} from "react-native"
-import React, {Component} from "react";
-
 export function IconWithBadge(icon, badge, size) {
 
     return (
@@ -28,6 +27,6 @@ export function IconWithBadge(icon, badge, size) {
 }
 
 export function IconBadge(props) {
-    return (IconWithBadge(props.icon, props.badge, props.size))
+    return IconWithBadge(props.icon, props.badge, props.size)
 }
 

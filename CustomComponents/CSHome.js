@@ -5,13 +5,12 @@ import {
     ScrollView,
     TouchableOpacity
 } from 'react-native'
-import {NavigationContainer} from '@react-navigation/native'
-import {createStackNavigator} from '@react-navigation/stack'
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 import Device from './Device'
-import {DetailsScreen} from "./CSDetails"
-
-//创建导航控制器
-const Stack = createStackNavigator()
+import {FoodListScreen} from "./CSFoodList";
+import {IconWithBadge} from "./CSIconBadge";
+//tab导航
+const Tab = createBottomTabNavigator()
 
 // function App() {
 //     return (
@@ -25,16 +24,45 @@ const Stack = createStackNavigator()
 // }
 // export default App
 
-export function HomeScreens() {
+//首页tabbar导航布局
+export function Home() {
     return (
-        <Stack.Navigator>
-            <Stack.Screen name='Home' component={HomeScreen}/>
-            <Stack.Screen name='Details' component={DetailsScreen}/>
-        </Stack.Navigator>
+        <Tab.Navigator
+            screenOptions={({route})=>({
+                tabBarIcon:({focused, color, size})=> {
+                    let icon = undefined
+                    let badge = 0
+                    if (route.name === 'Home') {
+                        icon =
+                            focused ?
+                                require('./../ios/tabbarIcons/yjy_home_selected.png') :
+                                require('./../ios/tabbarIcons/yjy_home.png')
+                        badge = 8
+                    } else if (route.name === 'Food') {
+                        icon =
+                            focused ?
+                                require('./../ios/tabbarIcons/yjy_mine_selected.png') :
+                                require('./../ios/tabbarIcons/yjy_mine.png')
+                    }
+                    //console.log('icon='+icon,size);
+                    //返回自定义tabbarItem组件（可自由定制）
+                    //return <Image source={icon} style={{width:size,height:size}}/>
+                    //return IconBadge({icon:icon,badge:10,size:size})
+                    return IconWithBadge(icon,badge,size)
+                }
+            })}
+            tabBarOptions={{
+                activeTintColor: '#52cc8f',
+                inactiveTintColor: 'gray',
+            }}
+        >
+            <Tab.Screen name='Home' component={HomeScreen}/>
+            <Tab.Screen name='Food' component={FoodListScreen}/>
+        </Tab.Navigator>
     )
 }
-
-export function HomeScreen ({navigation,route}) {
+//首页布局
+function HomeScreen ({navigation,route}) {
     //监测下级页面参数回传
     useEffect(()=>{
         if (route.params?.real1) {
@@ -76,12 +104,12 @@ export function HomeScreen ({navigation,route}) {
         </ScrollView>
     )
 }
-
-//点击事件
+//push
 function click(navigation) {
-    navigation.navigate('Details',{real:'I am a wealthy！！！'})
+    navigation.push('Details',{real:'I am a wealthy！！！'})
+    //navigation.navigate('Details',{real:'I am a wealthy！！！'})
 }
-
+//首页布局样式
 const styles = StyleSheet.create({
     mainViewStyle: {
         flexDirection: 'column',
