@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {Component, useEffect} from 'react'
 import {
     Text,
     StyleSheet,
@@ -7,8 +7,9 @@ import {
 } from 'react-native'
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 import Device from '../Common/Device'
-import {FoodListScreen} from "./CSFoodList";
+import {FoodScreen} from "./CSFoodList";
 import {IconWithBadge} from "../CustomComponents/CSIconBadge";
+import CSStyle from "../Common/CSStyle";
 //tab导航
 const Tab = createBottomTabNavigator()
 
@@ -24,43 +25,57 @@ const Tab = createBottomTabNavigator()
 // }
 // export default App
 
-//首页tabbar导航布局
-export function Home() {
-    return (
-        <Tab.Navigator
-            screenOptions={({route})=>({
-                tabBarIcon:({focused, color, size})=> {
-                    let icon = undefined
-                    let badge = 0
-                    if (route.name === 'Home') {
-                        icon =
-                            focused ?
-                                require('./../ios/tabbarIcons/yjy_home_selected.png') :
-                                require('./../ios/tabbarIcons/yjy_home.png')
-                        badge = 8
-                    } else if (route.name === 'Food') {
-                        icon =
-                            focused ?
-                                require('./../ios/tabbarIcons/yjy_mine_selected.png') :
-                                require('./../ios/tabbarIcons/yjy_mine.png')
-                    }
-                    //console.log('icon='+icon,size);
-                    //返回自定义tabbarItem组件（可自由定制）
-                    //return <Image source={icon} style={{width:size,height:size}}/>
-                    //return IconBadge({icon:icon,badge:10,size:size})
-                    return IconWithBadge(icon,badge,size)
-                }
-            })}
-            tabBarOptions={{
-                activeTintColor: '#52cc8f',
-                inactiveTintColor: 'gray',
-            }}
-        >
-            <Tab.Screen name='Home' component={HomeScreen}/>
-            <Tab.Screen name='Food' component={FoodListScreen}/>
-        </Tab.Navigator>
-    )
+Tab.navigationOptions=({navigation})=>{
+    let { routeName } = navigation.state.routes[navigation.state.index]
+    console.log('routeName=',routeName)
+    let headerTitle = routeName
+    return {
+        headerTitle
+    }
 }
+
+export default class Home extends Component {
+    // navigation.setOptions({
+    //
+    // })
+    render() {
+        return (
+            <Tab.Navigator
+                screenOptions={({route}) => ({
+                    tabBarIcon: ({focused, color, size}) => {
+                        let icon = undefined
+                        let badge = 0
+                        if (route.name === 'Home') {
+                            icon =
+                                focused ?
+                                    require('./../ios/tabbarIcons/yjy_home_selected.png') :
+                                    require('./../ios/tabbarIcons/yjy_home.png')
+                            badge = 8
+                        } else if (route.name === 'Food') {
+                            icon =
+                                focused ?
+                                    require('./../ios/tabbarIcons/yjy_mine_selected.png') :
+                                    require('./../ios/tabbarIcons/yjy_mine.png')
+                        }
+                        //console.log('route.name=',route.name,focused);
+                        //返回自定义tabbarItem组件（可自由定制）
+                        //return <Image source={icon} style={{width:size,height:size}}/>
+                        //return IconBadge({icon:icon,badge:10,size:size})
+                        return IconWithBadge(icon, badge, size)
+                    }
+                })}
+                tabBarOptions={{
+                    activeTintColor: CSStyle.mainColor,
+                    inactiveTintColor: CSStyle.textColor,
+                }}
+            >
+                <Tab.Screen name='Home' component={HomeScreen} options={{title: '首页0'}}/>
+                <Tab.Screen name='Food' component={FoodScreen} options={{title: '美食1'}}/>
+            </Tab.Navigator>
+        )
+    }
+}
+
 //首页布局
 function HomeScreen ({navigation,route}) {
     //监测下级页面参数回传
