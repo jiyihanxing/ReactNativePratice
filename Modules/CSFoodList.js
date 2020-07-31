@@ -1,9 +1,15 @@
 
 import React, {Component, useEffect, useState} from 'react'
-import {Text, View} from "react-native";
+import {
+    FlatList,
+    Text,
+    View,
+    StyleSheet
+} from "react-native";
 import CSStyle from "../Common/CSStyle";
 import {DetailsScreen} from "./CSDetails";
 import {sendPostRequest} from './../Common/CSFetch'
+
 
 // export function FoodScreen({navigation,route}){
 //     console.log('route.name=',route.name)
@@ -20,9 +26,20 @@ export default class FoodScreen extends React.Component {
         }
     }
 
+    __renderItem(item,index) {
+        return (
+            <Text style={styles.itemStyle}>{index+'   '+item.name}</Text>
+        )
+    }
+
     render() {
         return (
-            <Text>哈哈哈666</Text>
+            <View style={styles.containerStyle}>
+                <FlatList data={this.state.dataArray}
+                          keyExtractor={(item, index) => index.toString()}
+                          renderItem={({item,index})=>this.__renderItem(item,index)}
+                />
+            </View>
         )
     }
     componentDidMount() {
@@ -43,3 +60,16 @@ export default class FoodScreen extends React.Component {
         })
     }
 }
+
+const styles = StyleSheet.create({
+    containerStyle: {
+        flex: 1,
+        backgroundColor: '#EEE',
+    },
+    itemStyle: {
+        padding: 10,
+        fontSize: 18,
+        height: 44,
+        color: CSStyle.mainColor
+    },
+})
