@@ -7,6 +7,7 @@ import {DetailsScreen} from "./CSDetails";
 import CSStyle from "../Common/CSStyle";
 import {FoodScreen} from "./CSFoodList";
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native'
+import {Button} from "react-native";
 //创建导航控制器
 const Stack = createStackNavigator()
 
@@ -17,28 +18,31 @@ function Root() {
                 //统一设置导航条样式
                 screenOptions={{
                     headerStyle:{
-                        backgroundColor: 'white'
+                        backgroundColor: 'gray',//设置导航条背景色
                     },
-                    //统一设置标题和返回按钮颜色
-                    headerTintColor: 'white',
+                    headerTintColor: 'white',//统一设置标题和返回按钮颜色
                     //设置title样式
                     headerTitleStyle:{
-                        //设置标题颜色
-                        color: CSStyle.titleColor,
-                        fontSize: 18,
+                        color: 'red',//设置标题颜色
+                        fontSize: 30,
                         fontWeight: 'bold'
                     },
                     //设置返回按钮标题
                     headerBackTitle: ' ',
+                    headerTruncatedBackTitle: '8888',
+                    headerBackTitleStyle: {
+                        color:'blue'
+                    },
                     //控制导航条显隐
                     //headerShown: false
                 }}
             >
                 <Stack.Screen name='Home' component={Home} options={({ route }) => ({
                     //方式1-----更改当前导航条标题
-                    //avigationOptions: updateHeaderTitleStyle(route),
                     title: updateHeaderTitle(route),
-                    headerTitleStyle: updateHeaderTitleStyle(route)
+                    headerStyle: updateHeaderStyle(route),
+                    headerTitleStyle: updateHeaderTitleStyle(route),
+                    headerRight:()=> updateHeaderRight(route)
                 })}
                 />
                 <Stack.Screen name='Details' component={DetailsScreen} options={{title: '详情'}}/>
@@ -47,7 +51,7 @@ function Root() {
     )
 }
 
-//设置导航条标题
+//修改导航条标题
 function updateHeaderTitle(route) {
     let defaultRouteName = getFocusedRouteNameFromRoute(route)
     console.log('defaultRouteName=',defaultRouteName)
@@ -60,9 +64,25 @@ function updateHeaderTitle(route) {
     }
 }
 
+//修改导航条背景色
+function updateHeaderStyle(route) {
+    let defaultRouteName = getFocusedRouteNameFromRoute(route)
+    const routeName = defaultRouteName ?? 'Home'
+    switch (routeName) {
+        case 'Home':
+            return {
+                backgroundColor: 'orange',//设置导航条背景色
+            }
+        case 'Food':
+            return {
+                backgroundColor: CSStyle.mainColor,//设置导航条背景色
+            }
+    }
+}
+
+//修改导航条title样式
 function updateHeaderTitleStyle(route) {
     let defaultRouteName = getFocusedRouteNameFromRoute(route)
-    console.log('defaultRouteName=',defaultRouteName)
     const routeName = defaultRouteName ?? 'Home'
     switch (routeName) {
         case 'Home':
@@ -75,10 +95,26 @@ function updateHeaderTitleStyle(route) {
         case 'Food':
             return {
                 //设置标题颜色
-                color: CSStyle.mainColor,
-                fontSize: 30,
+                color: 'white',
+                fontSize: 28,
                 fontWeight: 'bold'
             }
+    }
+}
+
+//修改导航条右侧按钮
+function updateHeaderRight(route) {
+    let defaultRouteName = getFocusedRouteNameFromRoute(route)
+    const routeName = defaultRouteName ?? 'Home'
+    switch (routeName) {
+        case 'Home':
+            return null
+        case 'Food':
+            return (<Button
+                onPress={() => alert('设置')}
+                title= '设置'
+                color="#fff"
+            />)
     }
 }
 export default Root

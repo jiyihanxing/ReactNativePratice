@@ -7,7 +7,7 @@ import {
 } from 'react-native'
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 import Device from '../Common/Device'
-import {FoodScreen} from "./CSFoodList";
+import FoodScreen from "./CSFoodList";
 import {IconWithBadge} from "../CustomComponents/CSIconBadge";
 import CSStyle from "../Common/CSStyle";
 import {getFocusedRouteNameFromRoute} from "@react-navigation/native";

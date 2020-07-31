@@ -2,23 +2,22 @@
 import React, {Component, useEffect, useState} from 'react'
 import {Text, View} from "react-native";
 import CSStyle from "../Common/CSStyle";
-import {createStackNavigator} from "@react-navigation/stack";
 import {DetailsScreen} from "./CSDetails";
-//创建栈导航
-const Stack = createStackNavigator()
 
-// export function Food() {
+// export function FoodScreen({navigation,route}){
+//     console.log('route.name=',route.name)
 //     return (
-//         <Stack.Navigator>
-//             <Stack.Screen name='Food' component={FoodScreen}/>
-//             <Stack.Screen name='Details' component={DetailsScreen} options={{title: '美食666->详情'}}/>
-//         </Stack.Navigator>
+//         <Text>哈哈哈</Text>
 //     )
 // }
 
-export function FoodScreen({navigation,route}){
-    console.log('route=',route.navigation)
-    return (
-        <Text>哈哈哈</Text>
-    )
+export default class FoodScreen extends React.Component {
+    constructor() {
+        super();
+    }
+    render() {
+        return (
+            <Text>哈哈哈666</Text>
+        )
+    }
 }
