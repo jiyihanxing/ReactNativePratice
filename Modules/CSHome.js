@@ -85,7 +85,6 @@ function updateHeaderTitle(route) {
 
 //首页布局
 function HomeScreen ({navigation,route}) {
-
     //监测下级页面参数回传
     useEffect(()=>{
         if (route.params?.real1) {

@@ -32,13 +32,13 @@ class CSTest extends React.Component {
     //点击事件
     _click() {
         //alert('哈哈哈')
-        sendGetRequest('',null).then(function (result) {
+        sendGetRequest('',null).then((result)=> {
             console.log('status=',result.status + '\n' + 'responseJson=',JSON.stringify(result.responseJson) + '\n' + 'error=',result.error)
         })
         sendPostRequest('/api/dataQuery/subject', {
             queryParam: '1,1,,,sortNum,asc,0,20',
             subjectAlias: 'goods_speciality_list'
-        }).then(function (result) {
+        }).then((result)=>{
             console.log('status=',result.status + '\n' + 'responseJson=',JSON.stringify(result.responseJson) + '\n' + 'error=',result.error)
         })
         return
