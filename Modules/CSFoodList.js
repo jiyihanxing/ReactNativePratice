@@ -16,7 +16,8 @@ const Stack = createStackNavigator()
 //     )
 // }
 
-export function FoodScreen(){
+export function FoodScreen({navigation,route}){
+    console.log('route=',route.navigation)
     return (
         <Text>哈哈哈</Text>
     )

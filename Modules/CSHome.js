@@ -10,8 +10,11 @@ import Device from '../Common/Device'
 import {FoodScreen} from "./CSFoodList";
 import {IconWithBadge} from "../CustomComponents/CSIconBadge";
 import CSStyle from "../Common/CSStyle";
+import {getFocusedRouteNameFromRoute} from "@react-navigation/native";
+
 //tab导航
 const Tab = createBottomTabNavigator()
+
 
 // function App() {
 //     return (
@@ -25,59 +28,64 @@ const Tab = createBottomTabNavigator()
 // }
 // export default App
 
-Tab.navigationOptions=({navigation})=>{
-    let { routeName } = navigation.state.routes[navigation.state.index]
-    console.log('routeName=',routeName)
-    let headerTitle = routeName
-    return {
-        headerTitle
-    }
+
+export default function Home({navigation,route}) {
+    //方式2-----更改当前导航条标题
+    // React.useLayoutEffect(() => {
+    //     navigation.setOptions({ headerTitle: updateHeaderTitle(route) })
+    // }, [navigation, route])
+    return (
+        <Tab.Navigator
+
+            screenOptions={({route}) => ({
+                tabBarIcon: ({focused, color, size}) => {
+                    let icon = undefined
+                    let badge = 0
+                    if (route.name === 'Home') {
+                        icon =
+                            focused ?
+                                require('./../ios/tabbarIcons/yjy_home_selected.png') :
+                                require('./../ios/tabbarIcons/yjy_home.png')
+                        badge = 8
+                    } else if (route.name === 'Food') {
+                        icon =
+                            focused ?
+                                require('./../ios/tabbarIcons/yjy_mine_selected.png') :
+                                require('./../ios/tabbarIcons/yjy_mine.png')
+                    }
+                    //console.log('route.name=',route.name,focused);
+                    //返回自定义tabbarItem组件（可自由定制）
+                    //return <Image source={icon} style={{width:size,height:size}}/>
+                    //return IconBadge({icon:icon,badge:10,size:size})
+                    return IconWithBadge(icon, badge, size)
+                }
+            })}
+            tabBarOptions={{
+                activeTintColor: CSStyle.mainColor,
+                inactiveTintColor: CSStyle.textColor,
+            }}
+        >
+            <Tab.Screen name='Home' component={HomeScreen} options={{title: '首页0'}}/>
+            <Tab.Screen name='Food' component={FoodScreen} options={{title: '美食1'}}/>
+        </Tab.Navigator>
+    )
 }
 
-export default class Home extends Component {
-    // navigation.setOptions({
-    //
-    // })
-    render() {
-        return (
-            <Tab.Navigator
-                screenOptions={({route}) => ({
-                    tabBarIcon: ({focused, color, size}) => {
-                        let icon = undefined
-                        let badge = 0
-                        if (route.name === 'Home') {
-                            icon =
-                                focused ?
-                                    require('./../ios/tabbarIcons/yjy_home_selected.png') :
-                                    require('./../ios/tabbarIcons/yjy_home.png')
-                            badge = 8
-                        } else if (route.name === 'Food') {
-                            icon =
-                                focused ?
-                                    require('./../ios/tabbarIcons/yjy_mine_selected.png') :
-                                    require('./../ios/tabbarIcons/yjy_mine.png')
-                        }
-                        //console.log('route.name=',route.name,focused);
-                        //返回自定义tabbarItem组件（可自由定制）
-                        //return <Image source={icon} style={{width:size,height:size}}/>
-                        //return IconBadge({icon:icon,badge:10,size:size})
-                        return IconWithBadge(icon, badge, size)
-                    }
-                })}
-                tabBarOptions={{
-                    activeTintColor: CSStyle.mainColor,
-                    inactiveTintColor: CSStyle.textColor,
-                }}
-            >
-                <Tab.Screen name='Home' component={HomeScreen} options={{title: '首页0'}}/>
-                <Tab.Screen name='Food' component={FoodScreen} options={{title: '美食1'}}/>
-            </Tab.Navigator>
-        )
+//设置导航条标题
+function updateHeaderTitle(route) {
+    console.log('getFocusedRouteNameFromRoute(route)=',getFocusedRouteNameFromRoute(route))
+    const routeName = getFocusedRouteNameFromRoute(route) ?? 'Home'
+    switch (routeName) {
+        case 'Home':
+            return '首页666666'
+        case 'Food':
+            return '美食888888'
     }
 }
 
 //首页布局
 function HomeScreen ({navigation,route}) {
+
     //监测下级页面参数回传
     useEffect(()=>{
         if (route.params?.real1) {
